@@ -378,8 +378,7 @@ justify-content:center;
   
 <!-- DANGER SCORE -->
 
-
-<script>
+  <script>
 function calculateSafetyScore(){
 
 let marks = parseInt(document.getElementById("marks").value) || 0;
@@ -409,8 +408,33 @@ result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
 suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
 }
 }
- 
+ function openCourse(title,category,desc,level,duration){
+
+document.getElementById("courseTitle").innerHTML=title;
+
+document.getElementById("courseCategory").innerHTML=category;
+
+document.getElementById("courseDesc").innerHTML=desc;
+
+document.getElementById("courseLevel").innerHTML=level;
+
+document.getElementById("courseDuration").innerHTML=duration;
+
+document.getElementById("coursePopup").style.display="block";
+
+document.getElementById("courseOverlay").style.display="block";
+
+}
+
+function closeCourse(){
+
+document.getElementById("coursePopup").style.display="none";
+
+document.getElementById("courseOverlay").style.display="none";
+
+}
 </script>
+  
 <!-- AI SUPPORT -->
 
 <section id="support">
