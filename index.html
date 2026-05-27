@@ -1,349 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TN Skill Shield Hub</title>
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-scroll-behavior:smooth;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;scroll-behavior:smooth}
+body{background:#f4f7fb;color:#111827}
+nav{position:fixed;top:0;width:100%;background:#fff;padding:14px 45px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 12px #0001;z-index:999}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{width:55px;height:55px;object-fit:contain}
+.logo h2{color:#123b7a;font-size:22px}
+nav a{margin-left:22px;text-decoration:none;color:#111827;font-weight:bold}
+nav a:hover{color:#1d4ed8}
+.hero{min-height:100vh;background:linear-gradient(135deg,#07142f,#123b7a,#0f766e);color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 25px 70px}
+.hero img{width:130px;margin-bottom:25px}
+.hero h1{font-size:58px;margin-bottom:15px}
+.hero p{font-size:21px;color:#dbeafe;margin-bottom:30px}
+.btn{display:inline-block;padding:14px 28px;background:#facc15;color:#000;text-decoration:none;border-radius:12px;font-weight:bold;margin:8px;transition:.3s}
+.btn:hover{transform:scale(1.05)}
+.btn2{background:white;color:#123b7a}
+section{padding:90px 25px;max-width:1200px;margin:auto}
+.title{text-align:center;font-size:40px;color:#123b7a;margin-bottom:45px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.card{background:white;padding:30px;border-radius:22px;box-shadow:0 8px 25px #00000012;transition:.3s}
+.card:hover{transform:translateY(-8px)}
+.card h3{color:#123b7a;margin-bottom:14px;font-size:23px}
+.badge{display:inline-block;background:#dbeafe;color:#123b7a;padding:7px 14px;border-radius:30px;font-weight:bold;margin-bottom:15px}
+.dark{background:#07142f;color:white;max-width:none}
+.dark .title{color:#facc15}
+.form{background:white;padding:35px;border-radius:24px;box-shadow:0 8px 25px #0002;max-width:650px;margin:auto}
+input,select,textarea{width:100%;padding:14px;margin:10px 0;border:1px solid #d1d5db;border-radius:10px;font-size:15px}
+.whatsapp{position:fixed;right:22px;bottom:22px;background:#25d366;color:white;padding:16px 22px;border-radius:40px;text-decoration:none;font-weight:bold;box-shadow:0 8px 20px #0003}
+footer{background:#020617;color:white;text-align:center;padding:40px}
+@media(max-width:800px){
+nav{padding:12px 18px;flex-direction:column}
+nav div:last-child{margin-top:10px}
+nav a{margin:8px}
+.hero h1{font-size:38px}
 }
-
-body{
-background:#f3f6fb;
-color:#111827;
-}
-
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:white;
-padding:18px 50px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
-z-index:1000;
-}
-
-nav h2{
-color:#1e3a8a;
-}
-
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-nav ul li a{
-text-decoration:none;
-color:#111827;
-font-weight:bold;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#2563eb;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-background:linear-gradient(135deg,#0f172a,#1e3a8a);
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-color:white;
-}
-
-.hero-content h1{
-font-size:65px;
-margin-bottom:20px;
-}
-
-.hero-content p{
-font-size:22px;
-color:#d1d5db;
-margin-bottom:30px;
-}
-
-.btn{
-display:inline-block;
-padding:15px 35px;
-background:#facc15;
-color:black;
-text-decoration:none;
-font-weight:bold;
-border-radius:12px;
-transition:0.3s;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-/* SECTION */
-
-section{
-padding:100px 20px;
-max-width:1200px;
-margin:auto;
-}
-
-.section-title{
-text-align:center;
-font-size:42px;
-margin-bottom:60px;
-color:#1e3a8a;
-}
-
-/* CARDS */
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-
-.card{
-background:white;
-padding:35px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-}
-
-.card h3{
-margin-bottom:15px;
-color:#1e3a8a;
-}
-
-/* FOUNDER */
-
-.founder{
-background:white;
-padding:60px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.founder h2{
-font-size:40px;
-margin-bottom:15px;
-}
-
-/* CONTACT */
-
-.contact{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.contact-box{
-background:white;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-/* WHATSAPP BUTTON */
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
-color:white;
-padding:16px 22px;
-border-radius:50px;
-font-weight:bold;
-text-decoration:none;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:40px;
-margin-top:60px;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero-content h1{
-font-size:42px;
-}
-
-nav{
-padding:15px 20px;
-flex-direction:column;
-gap:15px;
-}
-
-nav ul{
-gap:15px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav>
-
-<h2>TN Skill Shield Hub</h2>
-
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#founder">Founder</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
+  <div class="logo">
+    <img src="logo.webp" alt="TN Skill Shield Hub Logo">
+    <h2>TN Skill Shield Hub</h2>
+  </div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#login">Login</a>
+    <a href="#courses">Courses</a>
+    <a href="#support">AI Support</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-
 <div class="hero" id="home">
-
-<div class="hero-content">
-
-<h1>TN Skill Shield Hub</h1>
-
-<p>Future-Proof Your Career</p>
-
-<a href="#contact" class="btn">Become a Mentor</a>
-
+  <div>
+    <img src="logo.webp" alt="Logo">
+    <h1>TN Skill Shield Hub</h1>
+    <p>Future-Proof Your Career with Skills, Mentorship & AI Support</p>
+    <a class="btn" href="#login">Student Signup</a>
+    <a class="btn btn2" href="#mentor">Become a Mentor</a>
+  </div>
 </div>
 
-</div>
-
-<!-- SERVICES -->
-
-<section id="services">
-
-<h2 class="section-title">Our Services</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Career Guidance</h3>
-<p>Professional guidance for students and professionals.</p>
-</div>
-
-<div class="card">
-<h3>Skill Development</h3>
-<p>Industry-ready training and modern skill programs.</p>
-</div>
-
-<div class="card">
-<h3>Mentorship</h3>
-<p>Connect with experienced mentors and experts.</p>
-</div>
-
-<div class="card">
-<h3>Professional Training</h3>
-<p>Learn practical and career-oriented professional skills.</p>
-</div>
-
-</div>
-
+<section>
+  <h2 class="title">Platform Features</h2>
+  <div class="grid">
+    <div class="card"><span class="badge">Signup</span><h3>Student Registration</h3><p>Students can join and start their career growth journey.</p></div>
+    <div class="card"><span class="badge">Login</span><h3>Secure Login</h3><p>Separate access for students, mentors and admin team.</p></div>
+    <div class="card"><span class="badge">Score</span><h3>Career Danger Score</h3><p>Identify career risk level and skill improvement needs.</p></div>
+    <div class="card"><span class="badge">AI</span><h3>24/7 AI Support</h3><p>Emergency career guidance and instant help anytime.</p></div>
+  </div>
 </section>
 
-<!-- FOUNDER -->
-
-<section id="founder">
-
-<h2 class="section-title">Founder</h2>
-
-<div class="founder">
-
-<h2>SIVAMURUGAN</h2>
-
-<p style="font-size:20px;color:#6b7280;margin-top:10px;">
-Founder of TN Skill Shield Hub
-</p>
-
-</div>
-
+<section id="courses">
+  <h2 class="title">Courses</h2>
+  <div class="grid">
+    <div class="card"><h3>Communication Skills</h3><p>Improve speaking, confidence and interview communication.</p></div>
+    <div class="card"><h3>Career Awareness</h3><p>Understand career paths, job roles and future opportunities.</p></div>
+    <div class="card"><h3>Digital Skills</h3><p>Learn basic tech, AI tools, resume building and online growth.</p></div>
+    <div class="card"><h3>Interview Preparation</h3><p>Mock interview guidance and professional preparation.</p></div>
+  </div>
 </section>
 
-<!-- CONTACT -->
+<section class="dark" id="support">
+  <h2 class="title">Emergency 24/7 AI Career Support</h2>
+  <div class="grid" style="max-width:1200px;margin:auto">
+    <div class="card"><h3>AI Career Assistant</h3><p>Get instant answers for career, skills and courses.</p></div>
+    <div class="card"><h3>Emergency Help</h3><p>Quick support for career confusion and urgent guidance.</p></div>
+    <div class="card"><h3>Skill Awareness Test</h3><p>Check your current skill level and growth direction.</p></div>
+  </div>
+</section>
+
+<section id="login">
+  <h2 class="title">Signup / Registration</h2>
+  <div class="form">
+    <input type="text" placeholder="Full Name">
+    <input type="tel" placeholder="Mobile Number">
+    <select>
+      <option>Select Role</option>
+      <option>Student</option>
+      <option>Mentor</option>
+      <option>Institution</option>
+    </select>
+    <textarea placeholder="Tell us what support you need"></textarea>
+    <a class="btn" href="https://wa.me/918524020966">Register via WhatsApp</a>
+  </div>
+</section>
+
+<section id="mentor">
+  <h2 class="title">Founder</h2>
+  <div class="card" style="text-align:center;max-width:700px;margin:auto">
+    <h3>SIVAMURUGAN</h3>
+    <p><b>Founder of TN Skill Shield Hub</b></p>
+    <p style="margin-top:12px">Building a future-ready platform for students, mentors and skill development.</p>
+  </div>
+</section>
 
 <section id="contact">
-
-<h2 class="section-title">Contact Us</h2>
-
-<div class="contact">
-
-<div class="contact-box">
-<h3>Call Us</h3>
-<p>8524020966</p>
-</div>
-
-<div class="contact-box">
-<h3>WhatsApp</h3>
-<p>8524020966</p>
-</div>
-
-<div class="contact-box">
-<h3>Instagram</h3>
-<p>@tn_skill_shield_hub</p>
-</div>
-
-</div>
-
+  <h2 class="title">Contact Us</h2>
+  <div class="grid">
+    <div class="card"><h3>Phone</h3><p>8524020966</p></div>
+    <div class="card"><h3>WhatsApp</h3><p>8524020966</p></div>
+    <div class="card"><h3>Instagram</h3><p>@tn_skill_shield_hub</p></div>
+  </div>
 </section>
 
-<!-- WHATSAPP -->
-
-<a class="whatsapp" href="https://wa.me/918524020966">
-WhatsApp
-</a>
-
-<!-- FOOTER -->
+<a class="whatsapp" href="https://wa.me/918524020966">WhatsApp</a>
 
 <footer>
-
-<h2>TN Skill Shield Hub</h2>
-
-<p style="margin-top:10px;">
-© 2026 All Rights Reserved
-</p>
-
+  <h2>TN Skill Shield Hub</h2>
+  <p>Future-Proof Your Career</p>
+  <p>© 2026 All Rights Reserved</p>
 </footer>
 
 </body>
