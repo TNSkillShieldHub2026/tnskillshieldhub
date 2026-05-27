@@ -409,36 +409,7 @@ result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
 suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
 }
 }
-  function calculateSafetyScore(){
-
-let marks = parseInt(document.getElementById("marks").value) || 0;
-let communication = parseInt(document.getElementById("communication").value);
-let computer = parseInt(document.getElementById("computer").value);
-let clarity = parseInt(document.getElementById("clarity").value);
-let aiRisk = parseInt(document.getElementById("aiRisk").value);
-let updateLevel = parseInt(document.getElementById("updateLevel").value);
-let userType = document.getElementById("userType").value;
-let field = document.getElementById("field").value || "your selected field";
-
-let score = (marks + communication + computer + clarity + aiRisk + updateLevel) / 6;
-
-let result = document.getElementById("result");
-let suggestion = document.getElementById("suggestion");
-
-if(score >= 75){
-result.innerHTML = "✅ Safe Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku current path safe ah iruku. " + field + " field la advanced skills improve pannunga.";
-}
-else if(score >= 50){
-result.innerHTML = "⚠️ Moderate Risk Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku medium risk iruku. Communication, tech skill, and skill update improve panna safety increase aagum.";
-}
-else{
-result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
-}
-
-}
+ 
 </script>
 <!-- AI SUPPORT -->
 
