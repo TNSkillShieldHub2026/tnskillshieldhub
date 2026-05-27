@@ -327,41 +327,55 @@ justify-content:center;
 </div>
 
 </section>
-<!-- COURSES -->
-
 <section id="courses">
-
-<h2 class="title">Courses</h2>
+<h2 class="title">TN SkillShield Hub | Course Catalog</h2>
 
 <div class="grid">
-
-<div class="card">
-<h3>Communication Skills</h3>
-<p>Improve confidence and speaking skills.</p>
-<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+<div class="card" onclick="openCourse('Python Programming Zero-to-Pro','Technical Mastery','From basics to building your own automated scripts.','Beginner to Advanced','4 Weeks')">
+<h3>Python Programming Zero-to-Pro</h3><p>From basics to automated scripts.</p>
 </div>
 
-<div class="card">
-<h3>Interview Preparation</h3>
-<p>Professional interview guidance and practice.</p>
-<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+<div class="card" onclick="openCourse('Modern Web Design','Technical Mastery','Master HTML5, CSS3, and responsive layouts.','Beginner','3 Weeks')">
+<h3>Modern Web Design</h3><p>HTML5, CSS3 & responsive layouts.</p>
 </div>
 
-<div class="card">
-<h3>Digital Skills</h3>
-<p>Learn AI tools, online growth and technology basics.</p>
-<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+<div class="card" onclick="openCourse('AI Productivity Hacks','Technical Mastery','Master ChatGPT, Gemini, and AI tools for 2x faster work.','All Levels','2 Weeks')">
+<h3>AI Productivity Hacks</h3><p>Use AI tools for faster work.</p>
 </div>
 
-<div class="card">
-<h3>Career Awareness</h3>
-<p>Understand future careers and opportunities.</p>
-<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+<div class="card" onclick="openCourse('LinkedIn Profile Booster','Career Readiness','Turn your LinkedIn profile into a hiring magnet.','Students & Job Seekers','1 Week')">
+<h3>LinkedIn Profile Booster</h3><p>Build a hiring-ready profile.</p>
 </div>
 
+<div class="card" onclick="openCourse('Resume & Portfolio Blueprint','Career Readiness','Create an ATS-friendly resume and strong portfolio.','Students & Job Seekers','1 Week')">
+<h3>Resume & Portfolio Blueprint</h3><p>ATS resume + portfolio.</p>
 </div>
 
+<div class="card" onclick="openCourse('Interview Edge','Career Readiness','Mock sessions and communication techniques to crack interviews.','Job Seekers','2 Weeks')">
+<h3>Interview Edge</h3><p>Mock interview + communication.</p>
+</div>
+
+<div class="card" onclick="openCourse('Freelancing Basics','Digital Entrepreneurship','Start earning your first ₹1000–₹5000 online using your skills.','Beginners','2 Weeks')">
+<h3>Freelancing Basics</h3><p>Earn online using your skills.</p>
+</div>
+
+<div class="card" onclick="openCourse('Canva Design Pro','Digital Entrepreneurship','Master professional graphic design for social media and business.','Beginners','2 Weeks')">
+<h3>Canva Design Pro</h3><p>Professional social media design.</p>
+</div>
+</div>
 </section>
+
+<div class="overlay" id="courseOverlay"></div>
+<div class="popup" id="coursePopup">
+<h2 id="courseTitle"></h2>
+<p><b>Category:</b> <span id="courseCategory"></span></p>
+<p><b>Duration:</b> <span id="courseDuration"></span></p>
+<p><b>Level:</b> <span id="courseLevel"></span></p>
+<p id="courseDesc" style="margin-top:15px;"></p>
+<a class="btn" href="https://wa.me/918524020966">Join This Course</a>
+<button class="btn" style="background:#e5e7eb;width:100%;" onclick="closeCourse()">Close</button>
+</div>
+  
 <!-- DANGER SCORE -->
 
 <section id="danger">
@@ -591,7 +605,20 @@ document.getElementById("result").innerHTML="🚨 High Career Danger Score";
 }
 
 }
+function openCourse(title,category,desc,level,duration){
+document.getElementById("courseTitle").innerHTML=title;
+document.getElementById("courseCategory").innerHTML=category;
+document.getElementById("courseDesc").innerHTML=desc;
+document.getElementById("courseLevel").innerHTML=level;
+document.getElementById("courseDuration").innerHTML=duration;
+document.getElementById("coursePopup").style.display="block";
+document.getElementById("courseOverlay").style.display="block";
+}
 
+function closeCourse(){
+document.getElementById("coursePopup").style.display="none";
+document.getElementById("courseOverlay").style.display="none";
+}
 </script>
 
 </body>
