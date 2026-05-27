@@ -378,104 +378,68 @@ justify-content:center;
   
 <!-- DANGER SCORE -->
 
-<section id="danger">
-
-<h2 class="title">Career Danger Score</h2>
-
-<div class="form">
-
-<label>Class / Degree</label>
-<input type="text" id="degree" placeholder="Example: B.Sc Computer Science">
-
-<label>Marks %</label>
-<input type="number" id="marks" placeholder="Enter Marks Percentage">
-
-<label>Communication Level</label>
-<select id="communication">
-<option value="20">Poor</option>
-<option value="50">Average</option>
-<option value="80">Good</option>
-<option value="100">Excellent</option>
-</select>
-
-<label>Computer Skill</label>
-<select id="computer">
-<option value="20">Basic</option>
-<option value="50">Intermediate</option>
-<option value="80">Advanced</option>
-<option value="100">Expert</option>
-</select>
-
-<label>Career Clarity</label>
-<select id="clarity">
-<option value="20">Confused</option>
-<option value="50">Somewhat Clear</option>
-<option value="80">Clear</option>
-<option value="100">Very Clear</option>
-</select>
-
-<label>Interested Field</label>
-<input type="text" id="field" placeholder="Example: AI, Software, Banking">
-
-<button class="btn" onclick="calculateDangerScore()">
-Check Career Score
-</button>
-
-<h2 id="result" style="margin-top:20px;text-align:center;color:#123b7a;"></h2>
-
-<p id="suggestion" style="margin-top:15px;text-align:center;font-size:18px;"></p>
-
-</div>
-
-</section>
 
 <script>
+function calculateSafetyScore(){
 
-function calculateDangerScore(){
+let marks = parseInt(document.getElementById("marks").value) || 0;
+let communication = parseInt(document.getElementById("communication").value);
+let computer = parseInt(document.getElementById("computer").value);
+let clarity = parseInt(document.getElementById("clarity").value);
+let aiRisk = parseInt(document.getElementById("aiRisk").value);
+let updateLevel = parseInt(document.getElementById("updateLevel").value);
+let userType = document.getElementById("userType").value;
+let field = document.getElementById("field").value || "your selected field";
 
-let marks=parseInt(document.getElementById("marks").value) || 0;
+let score = (marks + communication + computer + clarity + aiRisk + updateLevel) / 6;
 
-let communication=parseInt(document.getElementById("communication").value);
+let result = document.getElementById("result");
+let suggestion = document.getElementById("suggestion");
 
-let computer=parseInt(document.getElementById("computer").value);
-
-let clarity=parseInt(document.getElementById("clarity").value);
-
-let total=(marks+communication+computer+clarity)/4;
-
-let result=document.getElementById("result");
-
-let suggestion=document.getElementById("suggestion");
-
-if(total>=75){
-
-result.innerHTML="🔥 Excellent Career Safety Score : "+Math.round(total)+"%";
-
-suggestion.innerHTML="You are on a strong career path. Keep improving advanced skills.";
-
+if(score >= 75){
+result.innerHTML = "✅ Safe Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku current path safe ah iruku. " + field + " field la advanced skills improve pannunga.";
 }
-
-else if(total>=50){
-
-result.innerHTML="⚠ Moderate Career Risk : "+Math.round(total)+"%";
-
-suggestion.innerHTML="Improve communication and technical skills for better opportunities.";
-
+else if(score >= 50){
+result.innerHTML = "⚠️ Moderate Risk Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku medium risk iruku. Communication, tech skill, and skill update improve panna safety increase aagum.";
 }
-
 else{
+result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
+}
+}
+  function calculateSafetyScore(){
 
-result.innerHTML="🚨 High Career Danger Score : "+Math.round(total)+"%";
+let marks = parseInt(document.getElementById("marks").value) || 0;
+let communication = parseInt(document.getElementById("communication").value);
+let computer = parseInt(document.getElementById("computer").value);
+let clarity = parseInt(document.getElementById("clarity").value);
+let aiRisk = parseInt(document.getElementById("aiRisk").value);
+let updateLevel = parseInt(document.getElementById("updateLevel").value);
+let userType = document.getElementById("userType").value;
+let field = document.getElementById("field").value || "your selected field";
 
-suggestion.innerHTML="Immediate mentorship and skill development support recommended.";
+let score = (marks + communication + computer + clarity + aiRisk + updateLevel) / 6;
 
+let result = document.getElementById("result");
+let suggestion = document.getElementById("suggestion");
+
+if(score >= 75){
+result.innerHTML = "✅ Safe Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku current path safe ah iruku. " + field + " field la advanced skills improve pannunga.";
+}
+else if(score >= 50){
+result.innerHTML = "⚠️ Moderate Risk Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku medium risk iruku. Communication, tech skill, and skill update improve panna safety increase aagum.";
+}
+else{
+result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
+suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
 }
 
 }
-
 </script>
-
-
 <!-- AI SUPPORT -->
 
 <section id="support">
