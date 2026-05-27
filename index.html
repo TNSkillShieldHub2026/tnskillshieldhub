@@ -362,7 +362,6 @@ justify-content:center;
 </div>
 
 </section>
-
 <!-- DANGER SCORE -->
 
 <section id="danger">
@@ -371,22 +370,97 @@ justify-content:center;
 
 <div class="form">
 
-<label>Communication Skill</label>
-<input type="range" min="0" max="100" id="skill1">
+<label>Class / Degree</label>
+<input type="text" id="degree" placeholder="Example: B.Sc Computer Science">
 
-<label>Technical Skill</label>
-<input type="range" min="0" max="100" id="skill2">
+<label>Marks %</label>
+<input type="number" id="marks" placeholder="Enter Marks Percentage">
 
-<label>Confidence Level</label>
-<input type="range" min="0" max="100" id="skill3">
+<label>Communication Level</label>
+<select id="communication">
+<option value="20">Poor</option>
+<option value="50">Average</option>
+<option value="80">Good</option>
+<option value="100">Excellent</option>
+</select>
 
-<button class="btn" onclick="calculateScore()">Check Score</button>
+<label>Computer Skill</label>
+<select id="computer">
+<option value="20">Basic</option>
+<option value="50">Intermediate</option>
+<option value="80">Advanced</option>
+<option value="100">Expert</option>
+</select>
+
+<label>Career Clarity</label>
+<select id="clarity">
+<option value="20">Confused</option>
+<option value="50">Somewhat Clear</option>
+<option value="80">Clear</option>
+<option value="100">Very Clear</option>
+</select>
+
+<label>Interested Field</label>
+<input type="text" id="field" placeholder="Example: AI, Software, Banking">
+
+<button class="btn" onclick="calculateDangerScore()">
+Check Career Score
+</button>
 
 <h2 id="result" style="margin-top:20px;text-align:center;color:#123b7a;"></h2>
+
+<p id="suggestion" style="margin-top:15px;text-align:center;font-size:18px;"></p>
 
 </div>
 
 </section>
+
+<script>
+
+function calculateDangerScore(){
+
+let marks=parseInt(document.getElementById("marks").value) || 0;
+
+let communication=parseInt(document.getElementById("communication").value);
+
+let computer=parseInt(document.getElementById("computer").value);
+
+let clarity=parseInt(document.getElementById("clarity").value);
+
+let total=(marks+communication+computer+clarity)/4;
+
+let result=document.getElementById("result");
+
+let suggestion=document.getElementById("suggestion");
+
+if(total>=75){
+
+result.innerHTML="🔥 Excellent Career Safety Score : "+Math.round(total)+"%";
+
+suggestion.innerHTML="You are on a strong career path. Keep improving advanced skills.";
+
+}
+
+else if(total>=50){
+
+result.innerHTML="⚠ Moderate Career Risk : "+Math.round(total)+"%";
+
+suggestion.innerHTML="Improve communication and technical skills for better opportunities.";
+
+}
+
+else{
+
+result.innerHTML="🚨 High Career Danger Score : "+Math.round(total)+"%";
+
+suggestion.innerHTML="Immediate mentorship and skill development support recommended.";
+
+}
+
+}
+
+</script>
+
 
 <!-- AI SUPPORT -->
 
