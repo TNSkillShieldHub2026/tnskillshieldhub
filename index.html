@@ -141,6 +141,7 @@ padding:30px;
 border-radius:22px;
 box-shadow:0 5px 15px rgba(0,0,0,0.08);
 transition:0.3s;
+cursor:pointer;
 }
 
 .card:hover{
@@ -185,7 +186,7 @@ transform:translate(-50%,-50%);
 background:white;
 padding:35px;
 width:90%;
-max-width:400px;
+max-width:450px;
 border-radius:20px;
 box-shadow:0 5px 20px rgba(0,0,0,0.2);
 display:none;
@@ -269,7 +270,7 @@ justify-content:center;
 <ul>
 <li><a href="#home">Home</a></li>
 <li><a href="#courses">Courses</a></li>
-<li><a href="#danger">Danger Score</a></li>
+<li><a href="#danger">Safety Score</a></li>
 <li><a href="#support">AI Support</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -327,77 +328,154 @@ justify-content:center;
 </div>
 
 </section>
+
+<!-- COURSES -->
+
 <section id="courses">
+
 <h2 class="title">TN SkillShield Hub | Course Catalog</h2>
 
 <div class="grid">
+
 <div class="card" onclick="openCourse('Python Programming Zero-to-Pro','Technical Mastery','From basics to building your own automated scripts.','Beginner to Advanced','4 Weeks')">
-<h3>Python Programming Zero-to-Pro</h3><p>From basics to automated scripts.</p>
+<h3>Python Programming Zero-to-Pro</h3>
+<p>From basics to automated scripts.</p>
 </div>
 
 <div class="card" onclick="openCourse('Modern Web Design','Technical Mastery','Master HTML5, CSS3, and responsive layouts.','Beginner','3 Weeks')">
-<h3>Modern Web Design</h3><p>HTML5, CSS3 & responsive layouts.</p>
+<h3>Modern Web Design</h3>
+<p>HTML5, CSS3 & responsive layouts.</p>
 </div>
 
 <div class="card" onclick="openCourse('AI Productivity Hacks','Technical Mastery','Master ChatGPT, Gemini, and AI tools for 2x faster work.','All Levels','2 Weeks')">
-<h3>AI Productivity Hacks</h3><p>Use AI tools for faster work.</p>
+<h3>AI Productivity Hacks</h3>
+<p>Use AI tools for faster work.</p>
 </div>
 
-<div class="card" onclick="openCourse('LinkedIn Profile Booster','Career Readiness','Turn your LinkedIn profile into a hiring magnet.','Students & Job Seekers','1 Week')">
-<h3>LinkedIn Profile Booster</h3><p>Build a hiring-ready profile.</p>
+<div class="card" onclick="openCourse('LinkedIn Profile Booster','Career Readiness','Turn your profile into a hiring magnet.','Students & Job Seekers','1 Week')">
+<h3>LinkedIn Profile Booster</h3>
+<p>Build a hiring-ready profile.</p>
 </div>
 
-<div class="card" onclick="openCourse('Resume & Portfolio Blueprint','Career Readiness','Create an ATS-friendly resume and strong portfolio.','Students & Job Seekers','1 Week')">
-<h3>Resume & Portfolio Blueprint</h3><p>ATS resume + portfolio.</p>
+<div class="card" onclick="openCourse('Resume & Portfolio Blueprint','Career Readiness','ATS-friendly resume and portfolio.','Students & Job Seekers','1 Week')">
+<h3>Resume & Portfolio Blueprint</h3>
+<p>Professional resume building.</p>
 </div>
 
-<div class="card" onclick="openCourse('Interview Edge','Career Readiness','Mock sessions and communication techniques to crack interviews.','Job Seekers','2 Weeks')">
-<h3>Interview Edge</h3><p>Mock interview + communication.</p>
+<div class="card" onclick="openCourse('Interview Edge','Career Readiness','Mock interviews and communication training.','Job Seekers','2 Weeks')">
+<h3>Interview Edge</h3>
+<p>Interview communication mastery.</p>
 </div>
 
-<div class="card" onclick="openCourse('Freelancing Basics','Digital Entrepreneurship','Start earning your first ₹1000–₹5000 online using your skills.','Beginners','2 Weeks')">
-<h3>Freelancing Basics</h3><p>Earn online using your skills.</p>
+<div class="card" onclick="openCourse('Freelancing Basics','Digital Entrepreneurship','Start earning online using your skills.','Beginners','2 Weeks')">
+<h3>Freelancing Basics</h3>
+<p>Earn while you learn.</p>
 </div>
 
-<div class="card" onclick="openCourse('Canva Design Pro','Digital Entrepreneurship','Master professional graphic design for social media and business.','Beginners','2 Weeks')">
-<h3>Canva Design Pro</h3><p>Professional social media design.</p>
+<div class="card" onclick="openCourse('Canva Design Pro','Digital Entrepreneurship','Professional graphic design for business and social media.','Beginners','2 Weeks')">
+<h3>Canva Design Pro</h3>
+<p>Professional Canva designing.</p>
 </div>
+
 </div>
+
 </section>
 
+<!-- COURSE POPUP -->
+
 <div class="overlay" id="courseOverlay"></div>
+
 <div class="popup" id="coursePopup">
+
 <h2 id="courseTitle"></h2>
+
 <p><b>Category:</b> <span id="courseCategory"></span></p>
+
 <p><b>Duration:</b> <span id="courseDuration"></span></p>
+
 <p><b>Level:</b> <span id="courseLevel"></span></p>
+
 <p id="courseDesc" style="margin-top:15px;"></p>
+
 <a class="btn" href="https://wa.me/918524020966">Join This Course</a>
+
 <button class="btn" style="background:#e5e7eb;width:100%;" onclick="closeCourse()">Close</button>
+
 </div>
-  
-<!-- DANGER SCORE -->
 
-function calculateScore(){
+<!-- SAFETY SCORE -->
 
-let s1=document.getElementById("skill1").value;
-let s2=document.getElementById("skill2").value;
-let s3=document.getElementById("skill3").value;
+<section id="danger">
 
-let avg=(parseInt(s1)+parseInt(s2)+parseInt(s3))/3;
+<h2 class="title">Career / Job Safety Score</h2>
 
-if(avg>=75){
-document.getElementById("result").innerHTML="🔥 Excellent Career Safety Score";
-}
-else if(avg>=50){
-document.getElementById("result").innerHTML="⚠ Moderate Career Risk";
-}
-else{
-document.getElementById("result").innerHTML="🚨 High Career Danger Score";
-}
+<div class="form">
 
-}
-  
+<label>User Type</label>
+<select id="userType">
+<option>School Student</option>
+<option>College Student</option>
+<option>Working Professional</option>
+</select>
+
+<label>Education / Current Job</label>
+<input type="text" id="education">
+
+<label>Marks % / Experience</label>
+<input type="number" id="marks">
+
+<label>Communication Skill</label>
+<select id="communication">
+<option value="20">Poor</option>
+<option value="50">Average</option>
+<option value="80">Good</option>
+<option value="100">Excellent</option>
+</select>
+
+<label>Computer / Tech Skill</label>
+<select id="computer">
+<option value="20">Basic</option>
+<option value="50">Intermediate</option>
+<option value="80">Advanced</option>
+<option value="100">Expert</option>
+</select>
+
+<label>Career Clarity</label>
+<select id="clarity">
+<option value="20">Confused</option>
+<option value="50">Somewhat Clear</option>
+<option value="80">Clear</option>
+<option value="100">Very Clear</option>
+</select>
+
+<label>AI Automation Risk</label>
+<select id="aiRisk">
+<option value="100">Low Risk</option>
+<option value="70">Medium Risk</option>
+<option value="40">High Risk</option>
+</select>
+
+<label>Skill Update Level</label>
+<select id="updateLevel">
+<option value="20">Not Updating</option>
+<option value="50">Rarely Updating</option>
+<option value="80">Learning Monthly</option>
+<option value="100">Learning Weekly</option>
+</select>
+
+<label>Interested Field</label>
+<input type="text" id="field">
+
+<button class="btn" onclick="calculateSafetyScore()">Check Safety Score</button>
+
+<h2 id="result" style="margin-top:20px;text-align:center;color:#123b7a;"></h2>
+
+<p id="suggestion" style="margin-top:15px;text-align:center;"></p>
+
+</div>
+
+</section>
+
 <!-- AI SUPPORT -->
 
 <section id="support">
@@ -408,13 +486,13 @@ document.getElementById("result").innerHTML="🚨 High Career Danger Score";
 
 <div class="card">
 <h3>AI Career Assistant</h3>
-<p>Get instant guidance for skills, courses and careers.</p>
+<p>Get instant career guidance and skill support.</p>
 <button class="btn" onclick="alert('AI Support Coming Soon 🤖')">Chat Now</button>
 </div>
 
 <div class="card">
 <h3>Emergency Career Help</h3>
-<p>Quick support for students facing confusion and stress.</p>
+<p>Quick support for confusion and career stress.</p>
 <button class="btn" onclick="alert('Emergency Support Activated 🚨')">Get Help</button>
 </div>
 
@@ -493,18 +571,92 @@ WhatsApp
 
 <script>
 
-<script>
-function calculateSafetyScore(){
-...
+function openPopup(){
+document.getElementById("popup").style.display="block";
+document.getElementById("overlay").style.display="block";
 }
-function openCourse(...){
-...
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+document.getElementById("overlay").style.display="none";
 }
+
+function loginSuccess(){
+alert("Login System Connected Successfully 🔥");
+closePopup();
+}
+
+function openCourse(title,category,desc,level,duration){
+
+document.getElementById("courseTitle").innerHTML=title;
+document.getElementById("courseCategory").innerHTML=category;
+document.getElementById("courseDesc").innerHTML=desc;
+document.getElementById("courseLevel").innerHTML=level;
+document.getElementById("courseDuration").innerHTML=duration;
+
+document.getElementById("coursePopup").style.display="block";
+document.getElementById("courseOverlay").style.display="block";
+
+}
+
 function closeCourse(){
-...
+
+document.getElementById("coursePopup").style.display="none";
+document.getElementById("courseOverlay").style.display="none";
+
 }
-  
+
+function calculateSafetyScore(){
+
+let marks=parseInt(document.getElementById("marks").value)||0;
+
+let communication=parseInt(document.getElementById("communication").value);
+
+let computer=parseInt(document.getElementById("computer").value);
+
+let clarity=parseInt(document.getElementById("clarity").value);
+
+let aiRisk=parseInt(document.getElementById("aiRisk").value);
+
+let updateLevel=parseInt(document.getElementById("updateLevel").value);
+
+let userType=document.getElementById("userType").value;
+
+let field=document.getElementById("field").value||"your selected field";
+
+let score=(marks+communication+computer+clarity+aiRisk+updateLevel)/6;
+
+let result=document.getElementById("result");
+
+let suggestion=document.getElementById("suggestion");
+
+if(score>=75){
+
+result.innerHTML="✅ Safe Score: "+Math.round(score)+"%";
+
+suggestion.innerHTML=userType+" ku current path safe ah iruku. "+field+" field la advanced skills improve pannunga.";
+
+}
+
+else if(score>=50){
+
+result.innerHTML="⚠️ Moderate Risk Score: "+Math.round(score)+"%";
+
+suggestion.innerHTML=userType+" ku medium risk iruku. Communication and tech skills improve pannunga.";
+
+}
+
+else{
+
+result.innerHTML="🚨 High Risk Score: "+Math.round(score)+"%";
+
+suggestion.innerHTML=userType+" ku urgent skill development and mentorship support recommended.";
+
+}
+
+}
+
 </script>
-  
+
 </body>
 </html>
