@@ -1,143 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TN Skill Shield Hub</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;scroll-behavior:smooth}
-body{background:#f4f7fb;color:#111827}
-nav{position:fixed;top:0;width:100%;background:#fff;padding:14px 45px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 12px #0001;z-index:999}
-.logo{display:flex;align-items:center;gap:12px}
-.logo img{width:55px;height:55px;object-fit:contain}
-.logo h2{color:#123b7a;font-size:22px}
-nav a{margin-left:22px;text-decoration:none;color:#111827;font-weight:bold}
-nav a:hover{color:#1d4ed8}
-.hero{min-height:100vh;background:linear-gradient(135deg,#07142f,#123b7a,#0f766e);color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 25px 70px}
-.hero img{width:130px;margin-bottom:25px}
-.hero h1{font-size:58px;margin-bottom:15px}
-.hero p{font-size:21px;color:#dbeafe;margin-bottom:30px}
-.btn{display:inline-block;padding:14px 28px;background:#facc15;color:#000;text-decoration:none;border-radius:12px;font-weight:bold;margin:8px;transition:.3s}
-.btn:hover{transform:scale(1.05)}
-.btn2{background:white;color:#123b7a}
-section{padding:90px 25px;max-width:1200px;margin:auto}
-.title{text-align:center;font-size:40px;color:#123b7a;margin-bottom:45px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
-.card{background:white;padding:30px;border-radius:22px;box-shadow:0 8px 25px #00000012;transition:.3s}
-.card:hover{transform:translateY(-8px)}
-.card h3{color:#123b7a;margin-bottom:14px;font-size:23px}
-.badge{display:inline-block;background:#dbeafe;color:#123b7a;padding:7px 14px;border-radius:30px;font-weight:bold;margin-bottom:15px}
-.dark{background:#07142f;color:white;max-width:none}
-.dark .title{color:#facc15}
-.form{background:white;padding:35px;border-radius:24px;box-shadow:0 8px 25px #0002;max-width:650px;margin:auto}
-input,select,textarea{width:100%;padding:14px;margin:10px 0;border:1px solid #d1d5db;border-radius:10px;font-size:15px}
-.whatsapp{position:fixed;right:22px;bottom:22px;background:#25d366;color:white;padding:16px 22px;border-radius:40px;text-decoration:none;font-weight:bold;box-shadow:0 8px 20px #0003}
-footer{background:#020617;color:white;text-align:center;padding:40px}
-@media(max-width:800px){
-nav{padding:12px 18px;flex-direction:column}
-nav div:last-child{margin-top:10px}
-nav a{margin:8px}
-.hero h1{font-size:38px}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
 }
+
+body{
+background:#f4f7fb;
+color:#111827;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:14px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+z-index:999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+}
+
+.logo h2{
+color:#123b7a;
+font-size:22px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:22px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:bold;
+color:#111827;
+}
+
+nav ul li a:hover{
+color:#2563eb;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:linear-gradient(135deg,#07142f,#123b7a,#0f766e);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:120px 20px;
+color:white;
+}
+
+.hero img{
+width:120px;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:58px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:21px;
+color:#dbeafe;
+margin-bottom:30px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 30px;
+background:#facc15;
+color:black;
+font-weight:bold;
+border-radius:12px;
+text-decoration:none;
+margin:8px;
+cursor:pointer;
+border:none;
+}
+
+.btn:hover{
+transform:scale(1.05);
+transition:0.3s;
+}
+
+section{
+padding:90px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.title{
+text-align:center;
+font-size:40px;
+color:#123b7a;
+margin-bottom:50px;
+}
+
+/* CARDS */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:22px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+color:#123b7a;
+margin-bottom:15px;
+}
+
+/* FORM */
+
+.form{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+max-width:650px;
+margin:auto;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:1px solid #d1d5db;
+border-radius:10px;
+}
+
+textarea{
+height:120px;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:35px;
+width:90%;
+max-width:400px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+display:none;
+z-index:2000;
+}
+
+.popup h2{
+margin-bottom:20px;
+color:#123b7a;
+text-align:center;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+z-index:1500;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+color:white;
+padding:15px 22px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+
+footer{
+background:#020617;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+nav{
+flex-direction:column;
+padding:12px;
+}
+
+nav ul{
+margin-top:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">
-    <img src="logo.webp" alt="TN Skill Shield Hub Logo">
-    <h2>TN Skill Shield Hub</h2>
-  </div>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#login">Login</a>
-    <a href="#courses">Courses</a>
-    <a href="#support">AI Support</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<!-- NAVBAR -->
 
-<div class="hero" id="home">
-  <div>
-    <img src="logo.webp" alt="Logo">
-    <h1>TN Skill Shield Hub</h1>
-    <p>Future-Proof Your Career with Skills, Mentorship & AI Support</p>
-    <a class="btn" href="#login">Student Signup</a>
-    <a class="btn btn2" href="#mentor">Become a Mentor</a>
-  </div>
+<nav>
+
+<div class="logo">
+<img src="logo.webp">
+<h2>TN Skill Shield Hub</h2>
 </div>
 
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#courses">Courses</a></li>
+<li><a href="#danger">Danger Score</a></li>
+<li><a href="#support">AI Support</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<div class="hero" id="home">
+
+<div>
+
+<img src="logo.webp">
+
+<h1>TN Skill Shield Hub</h1>
+
+<p>Future-Proof Your Career with Skills, Mentorship & AI Support</p>
+
+<button class="btn" onclick="openPopup()">Student Login</button>
+
+<a href="#courses" class="btn">Explore Courses</a>
+
+</div>
+
+</div>
+
+<!-- FEATURES -->
+
 <section>
-  <h2 class="title">Platform Features</h2>
-  <div class="grid">
-    <div class="card"><span class="badge">Signup</span><h3>Student Registration</h3><p>Students can join and start their career growth journey.</p></div>
-    <div class="card"><span class="badge">Login</span><h3>Secure Login</h3><p>Separate access for students, mentors and admin team.</p></div>
-    <div class="card"><span class="badge">Score</span><h3>Career Danger Score</h3><p>Identify career risk level and skill improvement needs.</p></div>
-    <div class="card"><span class="badge">AI</span><h3>24/7 AI Support</h3><p>Emergency career guidance and instant help anytime.</p></div>
-  </div>
+
+<h2 class="title">Platform Features</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Student Registration</h3>
+<p>Create account and start your career growth journey.</p>
+</div>
+
+<div class="card">
+<h3>Mentor Network</h3>
+<p>Connect with mentors and career experts.</p>
+</div>
+
+<div class="card">
+<h3>Skill Awareness</h3>
+<p>Analyze your current skills and improvement needs.</p>
+</div>
+
+<div class="card">
+<h3>Emergency AI Support</h3>
+<p>24/7 career guidance and instant support system.</p>
+</div>
+
+</div>
+
 </section>
+<!-- COURSES -->
 
 <section id="courses">
-  <h2 class="title">Courses</h2>
-  <div class="grid">
-    <div class="card"><h3>Communication Skills</h3><p>Improve speaking, confidence and interview communication.</p></div>
-    <div class="card"><h3>Career Awareness</h3><p>Understand career paths, job roles and future opportunities.</p></div>
-    <div class="card"><h3>Digital Skills</h3><p>Learn basic tech, AI tools, resume building and online growth.</p></div>
-    <div class="card"><h3>Interview Preparation</h3><p>Mock interview guidance and professional preparation.</p></div>
-  </div>
+
+<h2 class="title">Courses</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Communication Skills</h3>
+<p>Improve confidence and speaking skills.</p>
+<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+</div>
+
+<div class="card">
+<h3>Interview Preparation</h3>
+<p>Professional interview guidance and practice.</p>
+<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+</div>
+
+<div class="card">
+<h3>Digital Skills</h3>
+<p>Learn AI tools, online growth and technology basics.</p>
+<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+</div>
+
+<div class="card">
+<h3>Career Awareness</h3>
+<p>Understand future careers and opportunities.</p>
+<button class="btn" onclick="alert('Course Coming Soon 🚀')">Open</button>
+</div>
+
+</div>
+
 </section>
 
-<section class="dark" id="support">
-  <h2 class="title">Emergency 24/7 AI Career Support</h2>
-  <div class="grid" style="max-width:1200px;margin:auto">
-    <div class="card"><h3>AI Career Assistant</h3><p>Get instant answers for career, skills and courses.</p></div>
-    <div class="card"><h3>Emergency Help</h3><p>Quick support for career confusion and urgent guidance.</p></div>
-    <div class="card"><h3>Skill Awareness Test</h3><p>Check your current skill level and growth direction.</p></div>
-  </div>
+<!-- DANGER SCORE -->
+
+<section id="danger">
+
+<h2 class="title">Career Danger Score</h2>
+
+<div class="form">
+
+<label>Communication Skill</label>
+<input type="range" min="0" max="100" id="skill1">
+
+<label>Technical Skill</label>
+<input type="range" min="0" max="100" id="skill2">
+
+<label>Confidence Level</label>
+<input type="range" min="0" max="100" id="skill3">
+
+<button class="btn" onclick="calculateScore()">Check Score</button>
+
+<h2 id="result" style="margin-top:20px;text-align:center;color:#123b7a;"></h2>
+
+</div>
+
 </section>
 
-<section id="login">
-  <h2 class="title">Signup / Registration</h2>
-  <div class="form">
-    <input type="text" placeholder="Full Name">
-    <input type="tel" placeholder="Mobile Number">
-    <select>
-      <option>Select Role</option>
-      <option>Student</option>
-      <option>Mentor</option>
-      <option>Institution</option>
-    </select>
-    <textarea placeholder="Tell us what support you need"></textarea>
-    <a class="btn" href="https://wa.me/918524020966">Register via WhatsApp</a>
-  </div>
+<!-- AI SUPPORT -->
+
+<section id="support">
+
+<h2 class="title">24/7 AI Career Support</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>AI Career Assistant</h3>
+<p>Get instant guidance for skills, courses and careers.</p>
+<button class="btn" onclick="alert('AI Support Coming Soon 🤖')">Chat Now</button>
+</div>
+
+<div class="card">
+<h3>Emergency Career Help</h3>
+<p>Quick support for students facing confusion and stress.</p>
+<button class="btn" onclick="alert('Emergency Support Activated 🚨')">Get Help</button>
+</div>
+
+<div class="card">
+<h3>Mentor Assistance</h3>
+<p>Connect with experienced mentors anytime.</p>
+<button class="btn" onclick="alert('Mentor Connect Coming Soon 👨‍🏫')">Connect</button>
+</div>
+
+</div>
+
 </section>
 
-<section id="mentor">
-  <h2 class="title">Founder</h2>
-  <div class="card" style="text-align:center;max-width:700px;margin:auto">
-    <h3>SIVAMURUGAN</h3>
-    <p><b>Founder of TN Skill Shield Hub</b></p>
-    <p style="margin-top:12px">Building a future-ready platform for students, mentors and skill development.</p>
-  </div>
-</section>
+<!-- CONTACT -->
 
 <section id="contact">
-  <h2 class="title">Contact Us</h2>
-  <div class="grid">
-    <div class="card"><h3>Phone</h3><p>8524020966</p></div>
-    <div class="card"><h3>WhatsApp</h3><p>8524020966</p></div>
-    <div class="card"><h3>Instagram</h3><p>@tn_skill_shield_hub</p></div>
-  </div>
+
+<h2 class="title">Contact Us</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Phone</h3>
+<p>8524020966</p>
+</div>
+
+<div class="card">
+<h3>WhatsApp</h3>
+<p>8524020966</p>
+</div>
+
+<div class="card">
+<h3>Instagram</h3>
+<p>@tn_skill_shield_hub</p>
+</div>
+
+</div>
+
 </section>
 
-<a class="whatsapp" href="https://wa.me/918524020966">WhatsApp</a>
+<!-- LOGIN POPUP -->
+
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="popup">
+
+<h2>Student Login</h2>
+
+<input type="text" placeholder="Enter Name">
+
+<input type="password" placeholder="Enter Password">
+
+<button class="btn" style="width:100%;" onclick="loginSuccess()">Login</button>
+
+<button class="btn" style="width:100%;background:#e5e7eb;margin-top:10px;" onclick="closePopup()">Close</button>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp" href="https://wa.me/918524020966">
+WhatsApp
+</a>
+
+<!-- FOOTER -->
 
 <footer>
-  <h2>TN Skill Shield Hub</h2>
-  <p>Future-Proof Your Career</p>
-  <p>© 2026 All Rights Reserved</p>
+
+<h2>TN Skill Shield Hub</h2>
+
+<p style="margin-top:10px;">Future-Proof Your Career</p>
+
+<p style="margin-top:10px;">© 2026 All Rights Reserved</p>
+
 </footer>
+
+<script>
+
+function openPopup(){
+document.getElementById("popup").style.display="block";
+document.getElementById("overlay").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+document.getElementById("overlay").style.display="none";
+}
+
+function loginSuccess(){
+alert("Login System Connected Successfully 🔥");
+closePopup();
+}
+
+function calculateScore(){
+
+let s1=document.getElementById("skill1").value;
+let s2=document.getElementById("skill2").value;
+let s3=document.getElementById("skill3").value;
+
+let avg=(parseInt(s1)+parseInt(s2)+parseInt(s3))/3;
+
+if(avg>=75){
+document.getElementById("result").innerHTML="🔥 Excellent Career Safety Score";
+}
+else if(avg>=50){
+document.getElementById("result").innerHTML="⚠ Moderate Career Risk";
+}
+else{
+document.getElementById("result").innerHTML="🚨 High Career Danger Score";
+}
+
+}
+
+</script>
 
 </body>
 </html>
