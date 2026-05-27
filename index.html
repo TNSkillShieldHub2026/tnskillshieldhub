@@ -378,62 +378,25 @@ justify-content:center;
   
 <!-- DANGER SCORE -->
 
-  <script>
-function calculateSafetyScore(){
+function calculateScore(){
 
-let marks = parseInt(document.getElementById("marks").value) || 0;
-let communication = parseInt(document.getElementById("communication").value);
-let computer = parseInt(document.getElementById("computer").value);
-let clarity = parseInt(document.getElementById("clarity").value);
-let aiRisk = parseInt(document.getElementById("aiRisk").value);
-let updateLevel = parseInt(document.getElementById("updateLevel").value);
-let userType = document.getElementById("userType").value;
-let field = document.getElementById("field").value || "your selected field";
+let s1=document.getElementById("skill1").value;
+let s2=document.getElementById("skill2").value;
+let s3=document.getElementById("skill3").value;
 
-let score = (marks + communication + computer + clarity + aiRisk + updateLevel) / 6;
+let avg=(parseInt(s1)+parseInt(s2)+parseInt(s3))/3;
 
-let result = document.getElementById("result");
-let suggestion = document.getElementById("suggestion");
-
-if(score >= 75){
-result.innerHTML = "✅ Safe Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku current path safe ah iruku. " + field + " field la advanced skills improve pannunga.";
+if(avg>=75){
+document.getElementById("result").innerHTML="🔥 Excellent Career Safety Score";
 }
-else if(score >= 50){
-result.innerHTML = "⚠️ Moderate Risk Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku medium risk iruku. Communication, tech skill, and skill update improve panna safety increase aagum.";
+else if(avg>=50){
+document.getElementById("result").innerHTML="⚠ Moderate Career Risk";
 }
 else{
-result.innerHTML = "🚨 High Risk Score: " + Math.round(score) + "%";
-suggestion.innerHTML = userType + " ku urgent skill development and mentorship support recommended.";
-}
-}
- function openCourse(title,category,desc,level,duration){
-
-document.getElementById("courseTitle").innerHTML=title;
-
-document.getElementById("courseCategory").innerHTML=category;
-
-document.getElementById("courseDesc").innerHTML=desc;
-
-document.getElementById("courseLevel").innerHTML=level;
-
-document.getElementById("courseDuration").innerHTML=duration;
-
-document.getElementById("coursePopup").style.display="block";
-
-document.getElementById("courseOverlay").style.display="block";
-
+document.getElementById("result").innerHTML="🚨 High Career Danger Score";
 }
 
-function closeCourse(){
-
-document.getElementById("coursePopup").style.display="none";
-
-document.getElementById("courseOverlay").style.display="none";
-
 }
-</script>
   
 <!-- AI SUPPORT -->
 
@@ -530,55 +493,18 @@ WhatsApp
 
 <script>
 
-function openPopup(){
-document.getElementById("popup").style.display="block";
-document.getElementById("overlay").style.display="block";
+<script>
+function calculateSafetyScore(){
+...
 }
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
-document.getElementById("overlay").style.display="none";
+function openCourse(...){
+...
 }
-
-function loginSuccess(){
-alert("Login System Connected Successfully 🔥");
-closePopup();
-}
-
-function calculateScore(){
-
-let s1=document.getElementById("skill1").value;
-let s2=document.getElementById("skill2").value;
-let s3=document.getElementById("skill3").value;
-
-let avg=(parseInt(s1)+parseInt(s2)+parseInt(s3))/3;
-
-if(avg>=75){
-document.getElementById("result").innerHTML="🔥 Excellent Career Safety Score";
-}
-else if(avg>=50){
-document.getElementById("result").innerHTML="⚠ Moderate Career Risk";
-}
-else{
-document.getElementById("result").innerHTML="🚨 High Career Danger Score";
-}
-
-}
-function openCourse(title,category,desc,level,duration){
-document.getElementById("courseTitle").innerHTML=title;
-document.getElementById("courseCategory").innerHTML=category;
-document.getElementById("courseDesc").innerHTML=desc;
-document.getElementById("courseLevel").innerHTML=level;
-document.getElementById("courseDuration").innerHTML=duration;
-document.getElementById("coursePopup").style.display="block";
-document.getElementById("courseOverlay").style.display="block";
-}
-
 function closeCourse(){
-document.getElementById("coursePopup").style.display="none";
-document.getElementById("courseOverlay").style.display="none";
+...
 }
+  
 </script>
-
+  
 </body>
 </html>
