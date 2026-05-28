@@ -12,7 +12,13 @@
     </style>
 </head>
 <body>
-
+<div class="ai-box" style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 20px 0; display: flex; gap: 10px;">
+    <input type="text" id="goalInput" placeholder="What is your career goal?" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+    <button class="btn-ai" onclick="suggestCourse()" style="background: #c5a059; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer;">AI Suggest</button>
+<div class="ai-box" style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 20px 0; display: flex; gap: 10px;">
+    <input type="text" id="goalInput" placeholder="What is your career goal?" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+    <button class="btn-ai" onclick="suggestCourse()" style="background: #c5a059; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer;">AI Suggest</button>
+</div>
     <h1 style="color: #0a1f5c;">TN SkillShield Hub | Course Catalog</h1>
 
     <h2 class="section-title">Computer Science & Tech</h2>
@@ -55,6 +61,27 @@
         <div class="card"><h3>Financial Literacy</h3><span class="badge">Growth</span></div>
         <div class="card"><h3>Psychology for Students</h3><span class="badge">Growth</span></div>
     </div>
-
+    
+<script>
+    function suggestCourse() {
+        const goal = document.getElementById('goalInput').value.toLowerCase();
+        
+        // AI Logic based on your specific course list
+        if(goal.includes('code') || goal.includes('web') || goal.includes('dev')) {
+            alert("AI Suggestion: Master 'Full-Stack Web Development' to build modern apps!");
+        } else if(goal.includes('ai') || goal.includes('data') || goal.includes('ml')) {
+            alert("AI Suggestion: 'Data Science & AI Essentials' or 'AI Foundations' is your best path!");
+        } else if(goal.includes('money') || goal.includes('finance') || goal.includes('tax')) {
+            alert("AI Suggestion: Start with 'Personal Finance & Investment' or 'Corporate Accounting'!");
+        } else if(goal.includes('design') || goal.includes('video') || goal.includes('edit')) {
+            alert("AI Suggestion: 'Video Editing' and 'Digital Content Strategy' are perfect for you!");
+        } else if(goal.includes('interview') || goal.includes('talk')) {
+            alert("AI Suggestion: You need the 'Interview Confidence' & 'Corporate Presentation' courses!");
+        } else {
+            alert("AI Suggestion: Our 'Small Business Startup Guide' covers everything to start your empire!");
+        }
+    }
+    
+</script>
 </body>
 </html>
