@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login & Register — TN Skill Shield Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue-deep:#0a1f5c;--blue-mid:#1a3a9e;--blue-bright:#2563eb;
+  --blue-light:#3b82f6;--blue-glow:#60a5fa;--blue-pale:#dbeafe;
+  --white:#fff;--off-white:#f0f6ff;--text-dark:#0f172a;
+  --text-mid:#334155;--text-light:#64748b;--red:#ef4444;--green:#22c55e;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);min-height:100vh;}
+
+/* TOP BAR */
+.topbar{background:rgba(10,31,92,0.97);padding:0 5%;height:64px;display:flex;
+  align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;
+  border-bottom:1px solid rgba(96,165,250,0.2);}
+.topbar-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
+  color:white;text-decoration:none;}
+.topbar-logo span{color:var(--blue-glow);}
+.back-btn{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.88rem;
+  font-weight:500;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.back-btn:hover{color:var(--blue-glow);}
+
+/* LAYOUT */
+.page{display:grid;grid-template-columns:420px 1fr;min-height:calc(100vh - 64px);}
+
+/* LEFT PANEL */
+.left-panel{background:linear-gradient(160deg,var(--blue-deep),#0d2878,var(--blue-mid));
+  padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;
+  position:sticky;top:64px;height:calc(100vh - 64px);overflow:hidden;}
+.left-panel::before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(96,165,250,0.07) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(96,165,250,0.07) 1px,transparent 1px);
+  background-size:50px 50px;}
+.panel-content{position:relative;z-index:1;}
+.panel-badge{display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);
+  color:var(--blue-glow);padding:0.4rem 1rem;border-radius:100px;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;
+  margin-bottom:1.5rem;}
+.panel-title{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  color:white;line-height:1.15;margin-bottom:1rem;}
+.panel-title span{color:var(--blue-glow);}
+.panel-desc{font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:2rem;}
+.panel-points{display:flex;flex-direction:column;gap:1rem;}
+.panel-point{display:flex;align-items:center;gap:0.85rem;}
+.pp-icon{width:38px;height:38px;background:rgba(96,165,250,0.15);
+  border:1px solid rgba(96,165,250,0.25);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.pp-text{font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.4;}
+.pp-text strong{color:white;}
+.panel-price{margin-top:2rem;background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.3rem 1.5rem;}
+.price-label{font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:0.3rem;}
+.price-val{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:white;}
+.price-val span{font-size:1rem;color:rgba(255,255,255,0.5);font-weight:400;}
+.price-note{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:0.3rem;}
+
+/* RIGHT PANEL */
+.right-panel{padding:2.5rem 3rem;overflow-y:auto;}
+
+/* TABS */
+.auth-tabs{display:flex;background:white;border-radius:14px;padding:5px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);margin-bottom:2rem;max-width:500px;}
+.auth-tab{flex:1;padding:0.7rem;border-radius:10px;border:none;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;
+  cursor:pointer;transition:all 0.2s;color:var(--text-light);background:transparent;}
+.auth-tab.active{background:var(--blue-bright);color:white;
+  box-shadow:0 3px 12px rgba(37,99,235,0.3);}
+
+/* FORMS */
+.form-panel{display:none;max-width:600px;}
+.form-panel.active{display:block;}
+.form-title{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;
+  color:var(--text-dark);margin-bottom:0.4rem;}
+.form-sub{font-size:0.9rem;color:var(--text-light);margin-bottom:2rem;}
+
+/* SECTION HEADING */
+.form-section-title{font-size:0.75rem;font-weight:700;color:var(--blue-bright);
+  letter-spacing:1.5px;text-transform:uppercase;margin:1.5rem 0 1rem;
+  padding-bottom:0.5rem;border-bottom:1px solid var(--blue-pale);}
+
+/* FIELDS */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:0.83rem;font-weight:600;
+  color:var(--text-mid);margin-bottom:0.4rem;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:11px 14px;border:1.5px solid #e2e8f0;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:0.93rem;color:var(--text-dark);
+  outline:none;transition:border 0.2s;background:white;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(37,99,235,0.08);}
+.form-group.error input,.form-group.error select{border-color:var(--red);}
+.error-msg{font-size:0.78rem;color:var(--red);margin-top:0.3rem;display:none;}
+.form-group.error .error-msg{display:block;}
+.field-hint{font-size:0.76rem;color:var(--text-light);margin-top:0.3rem;}
+
+/* PASSWORD STRENGTH */
+.strength-bar{height:4px;border-radius:2px;background:#e2e8f0;margin-top:6px;overflow:hidden;}
+.strength-fill{height:100%;border-radius:2px;width:0;transition:all 0.3s;}
+.strength-text{font-size:0.75rem;margin-top:4px;}
+
+/* RADIO GROUP */
+.radio-group{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.radio-opt{flex:1;min-width:120px;}
+.radio-opt input{display:none;}
+.radio-opt label{display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  padding:0.65rem;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;
+  font-size:0.88rem;font-weight:600;color:var(--text-mid);transition:all 0.2s;
+  text-align:center;}
+.radio-opt input:checked+label{border-color:var(--blue-bright);
+  background:var(--blue-pale);color:var(--blue-bright);}
+
+/* DYNAMIC SECTION */
+.dynamic-section{display:none;}
+.dynamic-section.show{display:block;}
+
+/* CHECKBOX */
+.checkbox-row{display:flex;align-items:flex-start;gap:0.75rem;margin-top:1rem;}
+.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue-bright);}
+.checkbox-row label{font-size:0.85rem;color:var(--text-mid);line-height:1.5;}
+.checkbox-row a{color:var(--blue-bright);text-decoration:none;}
+
+/* SUBMIT BTN */
+.submit-btn{width:100%;padding:0.95rem;background:var(--blue-bright);color:white;
+  border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1rem;cursor:pointer;transition:all 0.2s;margin-top:1.2rem;
+  box-shadow:0 4px 16px rgba(37,99,235,0.3);}
+.submit-btn:hover{background:var(--blue-mid);transform:translateY(-1px);}
+.submit-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none;}
+
+/* SUCCESS CARD */
+.success-card{display:none;background:white;border-radius:16px;padding:2.5rem;
+  text-align:center;border:1.5px solid #bbf7d0;
+  box-shadow:0 8px 30px rgba(34,197,94,0.1);}
+.success-icon{font-size:3.5rem;margin-bottom:1rem;}
+.success-card h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;
+  color:#166534;margin-bottom:0.5rem;}
+.success-card p{color:var(--text-light);font-size:0.92rem;line-height:1.6;}
+.success-card .back-home{display:inline-block;margin-top:1.5rem;
+  padding:0.75rem 2rem;background:var(--blue-bright);color:white;
+  border-radius:10px;text-decoration:none;font-weight:700;font-size:0.95rem;}
+
+/* PENDING CARD */
+.pending-card{display:none;background:white;border-radius:16px;padding:2rem;
+  border:1.5px solid #fde68a;text-align:center;margin-top:1rem;}
+.pending-card h3{font-family:'Syne',sans-serif;color:#92400e;font-size:1.1rem;margin-bottom:0.5rem;}
+.pending-card p{font-size:0.88rem;color:var(--text-light);}
+
+@media(max-width:900px){
+  .page{grid-template-columns:1fr;}
+  .left-panel{display:none;}
+  .right-panel{padding:1.5rem;}
+}
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr;}
+  .right-panel{padding:1.2rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="index.html" class="topbar-logo">TN Skill <span>Shield</span> Hub</a>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+
+<div class="page">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="panel-content">
+      <div class="panel-badge">🛡️ Skill Insurance</div>
+      <div class="panel-title">Protect Your <span>Future</span> with Skills</div>
+      <p class="panel-desc">Join TN Skill Shield Hub and get your personalised skill risk score, course recommendations, and digital bond certificate.</p>
+      <div class="panel-points">
+        <div class="panel-point">
+          <div class="pp-icon">🎯</div>
+          <div class="pp-text"><strong>AI Skill Assessment</strong><br>Know your risk level instantly</div>
+        </div>
+        <div class="panel-point">
+          <div class="pp-icon">📚</div>
+          <div class="pp-text"><strong>35+ Courses</strong><br>Tailored to your profile</div>
+        </div>
+        <div class="panel-point">
+          <div class="pp-icon">📜</div>
+          <div class="pp-text"><strong>Digital Bond Certificate</strong><br>Verified proof of your journey</div>
+        </div>
+        <div class="panel-point">
+          <div class="pp-icon">🤖</div>
+          <div class="pp-text"><strong>24/7 AI Support</strong><br>Guidance whenever you need it</div>
+        </div>
+      </div>
+      <div class="panel-price">
+        <div class="price-label">Monthly Premium</div>
+        <div class="price-val">₹99 <span>/ month</span></div>
+        <div class="price-note">Renews every 48 days • Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchTab('login')">Login</button>
+      <button class="auth-tab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <!-- ── LOGIN FORM ── -->
+    <div class="form-panel active" id="loginPanel">
+      <div class="form-title">Welcome Back! 👋</div>
+      <div class="form-sub">Login to access your courses and skill dashboard.</div>
+
+      <div class="form-group" id="lg-email-grp">
+        <label>Email Address</label>
+        <input type="email" id="lg-email" placeholder="yourname@email.com">
+        <div class="error-msg">Please enter a valid email.</div>
+      </div>
+      <div class="form-group" id="lg-pass-grp">
+        <label>Password</label>
+        <input type="password" id="lg-pass" placeholder="Enter your password">
+        <div class="error-msg">Password is required.</div>
+      </div>
+
+      <button class="submit-btn" onclick="handleLogin()">Login to Dashboard →</button>
+
+      <p style="text-align:center;margin-top:1.2rem;font-size:0.88rem;color:var(--text-light);">
+        Don't have an account?
+        <a href="#" style="color:var(--blue-bright);font-weight:600;" onclick="switchTab('register')">Register here</a>
+      </p>
+    </div>
+
+    <!-- ── REGISTER FORM ── -->
+    <div class="form-panel" id="registerPanel">
+      <div class="form-title">Create Your Account 🎓</div>
+      <div class="form-sub">Fill in your details to join TN Skill Shield Hub.</div>
+
+      <!-- PERSONAL DETAILS -->
+      <div class="form-section-title">👤 Personal Details</div>
+
+      <div class="form-row">
+        <div class="form-group" id="r-fname-grp">
+          <label>First Name *</label>
+          <input type="text" id="r-fname" placeholder="First Name">
+          <div class="error-msg">First name is required.</div>
+        </div>
+        <div class="form-group" id="r-lname-grp">
+          <label>Last Name *</label>
+          <input type="text" id="r-lname" placeholder="Last Name">
+          <div class="error-msg">Last name is required.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="r-dob-grp">
+          <label>Date of Birth *</label>
+          <input type="date" id="r-dob">
+          <div class="error-msg">Date of birth is required.</div>
+        </div>
+        <div class="form-group" id="r-gender-grp">
+          <label>Gender *</label>
+          <select id="r-gender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+          </select>
+          <div class="error-msg">Please select gender.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="r-phone-grp">
+          <label>Phone Number *</label>
+          <input type="tel" id="r-phone" placeholder="10-digit mobile number" maxlength="10">
+          <div class="error-msg">Enter a valid 10-digit phone number.</div>
+        </div>
+        <div class="form-group" id="r-email-grp">
+          <label>Email Address *</label>
+          <input type="email" id="r-email" placeholder="yourname@email.com">
+          <div class="error-msg">Enter a valid email address.</div>
+        </div>
+      </div>
+
+      <div class="form-group" id="r-address-grp">
+        <label>Full Address *</label>
+        <input type="text" id="r-address" placeholder="Street, City, District, State">
+        <div class="error-msg">Address is required.</div>
+      </div>
+
+      <!-- EDUCATION DETAILS -->
+      <div class="form-section-title">🎓 Education Details</div>
+
+      <div class="form-group">
+        <label>User Type *</label>
+        <div class="radio-group">
+          <div class="radio-opt">
+            <input type="radio" name="userType" id="ut-school" value="school" onchange="showEduSection()">
+            <label for="ut-school">🎒 School Student</label>
+          </div>
+          <div class="radio-opt">
+            <input type="radio" name="userType" id="ut-college" value="college" onchange="showEduSection()">
+            <label for="ut-college">🎓 College Student</label>
+          </div>
+          <div class="radio-opt">
+            <input type="radio" name="userType" id="ut-work" value="work" onchange="showEduSection()">
+            <label for="ut-work">💼 Working Professional</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHOOL -->
+      <div class="dynamic-section" id="school-section">
+        <div class="form-row">
+          <div class="form-group" id="r-school-grp">
+            <label>School Name *</label>
+            <input type="text" id="r-school" placeholder="e.g. Government Higher Secondary School">
+            <div class="error-msg">School name is required.</div>
+          </div>
+          <div class="form-group" id="r-grade-grp">
+            <label>Current Grade / Class *</label>
+            <select id="r-grade">
+              <option value="">Select Grade</option>
+              <option>6th Standard</option>
+              <option>7th Standard</option>
+              <option>8th Standard</option>
+              <option>9th Standard</option>
+              <option>10th Standard</option>
+              <option>11th Standard</option>
+              <option>12th Standard</option>
+            </select>
+            <div class="error-msg">Please select your grade.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Medium of Instruction</label>
+            <select id="r-medium">
+              <option value="">Select Medium</option>
+              <option>Tamil Medium</option>
+              <option>English Medium</option>
+            </select>
+          </div>
+          <div class="form-group" id="r-smarks-grp">
+            <label>Last Exam Marks % *</label>
+            <input type="number" id="r-smarks" placeholder="e.g. 85" min="0" max="100">
+            <div class="error-msg">Please enter your marks.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLLEGE -->
+      <div class="dynamic-section" id="college-section">
+        <div class="form-row">
+          <div class="form-group" id="r-college-grp">
+            <label>College / University Name *</label>
+            <input type="text" id="r-college" placeholder="e.g. Anna University">
+            <div class="error-msg">College name is required.</div>
+          </div>
+          <div class="form-group" id="r-dept-grp">
+            <label>Department / Branch *</label>
+            <input type="text" id="r-dept" placeholder="e.g. B.Tech Computer Science">
+            <div class="error-msg">Department is required.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" id="r-year-grp">
+            <label>Current Year *</label>
+            <select id="r-year">
+              <option value="">Select Year</option>
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+              <option>Final Year</option>
+            </select>
+            <div class="error-msg">Please select your year.</div>
+          </div>
+          <div class="form-group" id="r-cgpa-grp">
+            <label>CGPA / Marks % *</label>
+            <input type="number" id="r-cgpa" placeholder="e.g. 8.5 or 78%" step="0.1" min="0" max="100">
+            <div class="error-msg">Please enter your CGPA/marks.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKING -->
+      <div class="dynamic-section" id="work-section">
+        <div class="form-row">
+          <div class="form-group" id="r-company-grp">
+            <label>Company / Organisation Name *</label>
+            <input type="text" id="r-company" placeholder="e.g. Infosys Technologies">
+            <div class="error-msg">Company name is required.</div>
+          </div>
+          <div class="form-group" id="r-designation-grp">
+            <label>Designation / Role *</label>
+            <input type="text" id="r-designation" placeholder="e.g. Software Engineer">
+            <div class="error-msg">Designation is required.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" id="r-exp-grp">
+            <label>Years of Experience *</label>
+            <select id="r-exp">
+              <option value="">Select Experience</option>
+              <option>Fresher (0 years)</option>
+              <option>Less than 1 year</option>
+              <option>1–2 years</option>
+              <option>3–5 years</option>
+              <option>5+ years</option>
+            </select>
+            <div class="error-msg">Please select experience.</div>
+          </div>
+          <div class="form-group">
+            <label>Highest Qualification</label>
+            <input type="text" id="r-qual" placeholder="e.g. B.Tech, MBA">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="r-interest-grp">
+        <label>Interested Field / Career Goal *</label>
+        <input type="text" id="r-interest" placeholder="e.g. Software Development, Digital Marketing">
+        <div class="error-msg">Please enter your interested field.</div>
+      </div>
+
+      <!-- ACCOUNT DETAILS -->
+      <div class="form-section-title">🔐 Account Details</div>
+
+      <div class="form-group" id="r-pass-grp">
+        <label>Create Password *</label>
+        <input type="password" id="r-pass" placeholder="Min 8 characters" oninput="checkStrength()">
+        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        <div class="strength-text" id="strengthText"></div>
+        <div class="error-msg">Password must be at least 8 characters.</div>
+      </div>
+
+      <div class="form-group" id="r-cpass-grp">
+        <label>Confirm Password *</label>
+        <input type="password" id="r-cpass" placeholder="Re-enter your password">
+        <div class="error-msg">Passwords do not match.</div>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="r-terms">
+        <label for="r-terms">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> of TN Skill Shield Hub.</label>
+      </div>
+
+      <button class="submit-btn" id="registerBtn" onclick="handleRegister()">Create My Account →</button>
+
+      <p style="text-align:center;margin-top:1.2rem;font-size:0.88rem;color:var(--text-light);">
+        Already have an account?
+        <a href="#" style="color:var(--blue-bright);font-weight:600;" onclick="switchTab('login')">Login here</a>
+      </p>
+    </div>
+
+    <!-- SUCCESS CARD -->
+    <div class="success-card" id="successCard">
+      <div class="success-icon">🎉</div>
+      <h2>Registration Successful!</h2>
+      <p>Welcome to TN Skill Shield Hub! Your account has been created.<br>
+      Our team will review your details and activate your account shortly.</p>
+      <div class="pending-card" id="pendingCard" style="display:block;">
+        <h3>⏳ Account Activation Pending</h3>
+        <p>Your account is being reviewed by our team. You'll receive a confirmation on your registered phone/email.</p>
+      </div>
+      <a href="index.html" class="back-home">← Back to Home</a>
+    </div>
+
+  </div><!-- end right-panel -->
+</div><!-- end page -->
+
+<script>
+// ── TAB SWITCH ──
+function switchTab(tab){
+  document.querySelectorAll('.auth-tab').forEach((t,i)=>{
+    t.classList.toggle('active',
+      (tab==='login'&&i===0)||(tab==='register'&&i===1));
+  });
+  document.getElementById('loginPanel').classList.toggle('active',tab==='login');
+  document.getElementById('registerPanel').classList.toggle('active',tab==='register');
+  document.getElementById('successCard').style.display='none';
+}
+
+// ── SHOW EDU SECTION ──
+function showEduSection(){
+  ['school','college','work'].forEach(s=>{
+    document.getElementById(s+'-section').classList.remove('show');
+  });
+  const val=document.querySelector('input[name="userType"]:checked')?.value;
+  if(val) document.getElementById(val+'-section').classList.add('show');
+}
+
+// ── PASSWORD STRENGTH ──
+function checkStrength(){
+  const p=document.getElementById('r-pass').value;
+  const fill=document.getElementById('strengthFill');
+  const txt=document.getElementById('strengthText');
+  let score=0;
+  if(p.length>=8)score++;
+  if(/[A-Z]/.test(p))score++;
+  if(/[0-9]/.test(p))score++;
+  if(/[^A-Za-z0-9]/.test(p))score++;
+  const levels=[
+    {w:'0%',c:'#e2e8f0',t:''},
+    {w:'25%',c:'#ef4444',t:'Weak'},
+    {w:'50%',c:'#f97316',t:'Fair'},
+    {w:'75%',c:'#eab308',t:'Good'},
+    {w:'100%',c:'#22c55e',t:'Strong ✓'},
+  ];
+  const l=levels[score]||levels[0];
+  fill.style.width=l.w; fill.style.background=l.c;
+  txt.textContent=l.t; txt.style.color=l.c;
+}
+
+// ── VALIDATE FIELD ──
+function validate(id,condition){
+  const grp=document.getElementById(id+'-grp');
+  if(!grp)return true;
+  if(!condition){grp.classList.add('error');return false;}
+  grp.classList.remove('error');return true;
+}
+
+// ── LOGIN ──
+function handleLogin(){
+  const email=document.getElementById('lg-email').value.trim();
+  const pass=document.getElementById('lg-pass').value;
+  let ok=true;
+  ok=validate('lg-email',email&&/\S+@\S+\.\S+/.test(email))&&ok;
+  ok=validate('lg-pass',pass.length>0)&&ok;
+  if(!ok)return;
+  alert('✅ Login system will be connected to the database soon!\n\nFor now, please WhatsApp us at 8524020966 to activate your account.');
+}
+
+// ── REGISTER ──
+function handleRegister(){
+  let ok=true;
+  ok=validate('r-fname',document.getElementById('r-fname').value.trim())&&ok;
+  ok=validate('r-lname',document.getElementById('r-lname').value.trim())&&ok;
+  ok=validate('r-dob',document.getElementById('r-dob').value)&&ok;
+  ok=validate('r-gender',document.getElementById('r-gender').value)&&ok;
+  const phone=document.getElementById('r-phone').value.trim();
+  ok=validate('r-phone',phone.length===10&&/^\d+$/.test(phone))&&ok;
+  const email=document.getElementById('r-email').value.trim();
+  ok=validate('r-email',email&&/\S+@\S+\.\S+/.test(email))&&ok;
+  ok=validate('r-address',document.getElementById('r-address').value.trim())&&ok;
+
+  const ut=document.querySelector('input[name="userType"]:checked')?.value;
+  if(!ut){alert('Please select your user type.');return;}
+
+  if(ut==='school'){
+    ok=validate('r-school',document.getElementById('r-school').value.trim())&&ok;
+    ok=validate('r-grade',document.getElementById('r-grade').value)&&ok;
+    ok=validate('r-smarks',document.getElementById('r-smarks').value)&&ok;
+  } else if(ut==='college'){
+    ok=validate('r-college',document.getElementById('r-college').value.trim())&&ok;
+    ok=validate('r-dept',document.getElementById('r-dept').value.trim())&&ok;
+    ok=validate('r-year',document.getElementById('r-year').value)&&ok;
+    ok=validate('r-cgpa',document.getElementById('r-cgpa').value)&&ok;
+  } else if(ut==='work'){
+    ok=validate('r-company',document.getElementById('r-company').value.trim())&&ok;
+    ok=validate('r-designation',document.getElementById('r-designation').value.trim())&&ok;
+    ok=validate('r-exp',document.getElementById('r-exp').value)&&ok;
+  }
+
+  ok=validate('r-interest',document.getElementById('r-interest').value.trim())&&ok;
+  const pass=document.getElementById('r-pass').value;
+  const cpass=document.getElementById('r-cpass').value;
+  ok=validate('r-pass',pass.length>=8)&&ok;
+  ok=validate('r-cpass',pass===cpass&&cpass.length>0)&&ok;
+
+  if(!document.getElementById('r-terms').checked){
+    alert('Please accept the Terms & Conditions to continue.');return;
+  }
+  if(!ok){
+    document.querySelector('.form-group.error')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  // Show success
+  document.getElementById('registerPanel').style.display='none';
+  document.getElementById('successCard').style.display='block';
+  document.getElementById('successCard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>
